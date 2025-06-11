@@ -8,7 +8,7 @@ const BotaoCadastrar = () => {
 
     return (
         <div style={{ padding: "2rem" }}>
-            <Button intent="primary" text="Cadastrar" onClick={handleClick} />
+            <Button intent="primary" text="Cadastrar" title={"Cadastrar"} onClick={handleClick} />
         </div>
     );
 };

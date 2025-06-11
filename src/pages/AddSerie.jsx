@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+
 import {
     InputGroup,
     FormGroup,
@@ -8,6 +9,8 @@ import {
     Icon,
 } from "@blueprintjs/core";
 import { Select } from "@blueprintjs/select";
+
+import InteractiveStarRating from "../components/EstrelasInterativas.jsx";
 
 // Lista de exemplo para o autocomplete
 const titleOptions = ["Bug", "Sugestão", "Elogio", "Outro"];
@@ -55,22 +58,14 @@ const FormDeCadastro = () => {
 
             <FormGroup label="Avaliação">
                 <div style={{ display: "flex", gap: "0.5rem" }}>
-                    {[1, 2, 3, 4, 5].map((star) => (
-                        <Button
-                            key={star}
-                            icon={
-                                <Icon
-                                    icon="star"
-                                    color={star <= rating ? "#FFC940" : "#CED9E0"}
-                                />
-                            }
-                            onClick={() => setRating(star)}
-                        />
-                    ))}
+                    <InteractiveStarRating
+                        defaultRating={3}
+                        onChange={(value) => console.log("Nova avaliação:", value)}
+                    />
                 </div>
             </FormGroup>
 
-            <Button intent="primary" text="Salvar" onClick={handleClick} />
+            <Button intent="primary" text="Salvar" title={"Salvar"} onClick={handleClick} />
         </div>
     );
 };
