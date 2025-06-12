@@ -1,14 +1,14 @@
-import React from "react";
-import { Button } from "@blueprintjs/core";
+import React from 'react';
+import { Button } from '@blueprintjs/core';
 
 const BotaoCadastrar = () => {
     const handleClick = () => {
-        alert("Botão clicado!");
+        alert('Botão clicado!');
     };
 
     return (
-        <div style={{ padding: "2rem" }}>
-            <Button intent="primary" text="Cadastrar" title={"Cadastrar"} onClick={handleClick} />
+        <div style={{ padding: '2rem' }}>
+            <Button intent="primary" text="Cadastrar" title="Cadastrar" onClick={handleClick} />
         </div>
     );
 };

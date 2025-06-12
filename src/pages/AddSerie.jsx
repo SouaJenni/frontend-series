@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 
 import {
     InputGroup,
@@ -7,45 +7,51 @@ import {
     Button,
     MenuItem,
     Icon,
-} from "@blueprintjs/core";
-import { Select } from "@blueprintjs/select";
+} from '@blueprintjs/core';
+import { Select } from '@blueprintjs/select';
 
-import InteractiveStarRating from "../components/EstrelasInterativas.jsx";
+import InteractiveStarRating from '../components/EstrelasInterativas.jsx';
 
 // Lista de exemplo para o autocomplete
-const titleOptions = ["Bug", "Sugestão", "Elogio", "Outro"];
+const titleOptions = [
+    {titulo:'Matrix', ano:'1998', tipo:'filme'},
+    {titulo:'Star Wars', ano:'1965', tipo:'filme'},
+    {titulo: 'Todo Mundo Odeia o Chris', ano:'1980', tipo:'serie'}
+];
 
 const renderItem = (item, { handleClick, modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
     return (
         <MenuItem
             active={modifiers.active}
-            key={item}
-            text={item}
+            key={item.titulo}
+            text={item.titulo}
             onClick={handleClick}
         />
+
     );
 };
 
 const handleClick = () => {
-    alert("Botão clicado!");
-}
+    alert('Botão clicado!');
+};
 
 const FormDeCadastro = () => {
-    const [rating, setRating] = useState(0);
-
     return (
-        <div style={{ padding: "2rem", maxWidth: "600px" }}>
+        <div style={{ padding: '2rem', maxWidth: '600px' }}>
             <FormGroup label="Título" labelFor="title-input">
-                <Select
-                    items={titleOptions}
-                    itemRenderer={renderItem}
-                    onItemSelect={() => {}}
-                    noResults={<MenuItem disabled text="Nenhum resultado" />}
-                    filterable
-                >
-                    <InputGroup id="title-input" placeholder="Selecione ou digite..." />
-                </Select>
+                <div style={{ position: 'relative' }}>
+                    <Select
+                        items={titleOptions}
+                        itemRenderer={renderItem}
+                        onItemSelect={() => {}}
+                        noResults={<MenuItem disabled text="Nenhum resultado" />}
+                        filterable
+                        popoverProps={{ usePortal: false }}
+                    >
+                        <InputGroup id="title-input" placeholder="Selecione ou digite..." />
+                    </Select>
+                </div>
             </FormGroup>
 
             <FormGroup label="Comentário" labelFor="comment-textarea">
@@ -57,15 +63,15 @@ const FormDeCadastro = () => {
             </FormGroup>
 
             <FormGroup label="Avaliação">
-                <div style={{ display: "flex", gap: "0.5rem" }}>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <InteractiveStarRating
                         defaultRating={3}
-                        onChange={(value) => console.log("Nova avaliação:", value)}
+                        onChange={(value) => console.log('Nova avaliação:', value)}
                     />
                 </div>
             </FormGroup>
 
-            <Button intent="primary" text="Salvar" title={"Salvar"} onClick={handleClick} />
+            <Button intent="primary" text="Salvar" title="Salvar" onClick={handleClick} />
         </div>
     );
 };
