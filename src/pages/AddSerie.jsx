@@ -10,9 +10,9 @@ import {
 } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 
-import InteractiveStarRating from '../components/EstrelasInterativas.jsx';
+import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
+import { Botao } from "../components/Botao.jsx";
 
-// Lista de exemplo para o autocomplete
 const titleOptions = [
     {titulo:'Matrix', ano:'1998', tipo:'filme'},
     {titulo:'Star Wars', ano:'1965', tipo:'filme'},
@@ -64,14 +64,14 @@ const FormDeCadastro = () => {
 
             <FormGroup label="Avaliação">
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <InteractiveStarRating
+                    <BotaoEstrela
                         defaultRating={3}
                         onChange={(value) => console.log('Nova avaliação:', value)}
                     />
                 </div>
             </FormGroup>
 
-            <Button intent="primary" text="Salvar" title="Salvar" onClick={handleClick} />
+            <Botao intent="primary" text="Salvar" title="Salvar" onClick={handleClick} />
         </div>
     );
 };

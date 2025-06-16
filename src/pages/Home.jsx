@@ -1,16 +1,16 @@
 import React from 'react';
-import { Button } from '@blueprintjs/core';
+import {Botao} from '../components/Botao.jsx';
 
-const BotaoCadastrar = () => {
-    const handleClick = () => {
-        alert('Botão clicado!');
-    };
-
-    return (
-        <div style={{ padding: '2rem' }}>
-            <Button intent="primary" text="Cadastrar" title="Cadastrar" onClick={handleClick} />
-        </div>
-    );
+const handleClick = () => {
+    alert('Botão clicado!');
 };
 
-export default BotaoCadastrar;
+const Catalogo = () => {
+    return (
+        <Botao texto='Cadastrar' title='Cadastrar' onClick={handleClick} intent='primary' />
+    )
+}
+
+export default Catalogo;
+
+

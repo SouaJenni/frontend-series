@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Icon } from '@blueprintjs/core';
 
-const InteractiveStarRating = ({ defaultRating = 0, onChange }) => {
+export function BotaoEstrela ({ defaultRating = 0, onChange }) {
     const [rating, setRating] = useState(defaultRating);
 
     const handleClick = (star) => {
@@ -26,6 +26,5 @@ const InteractiveStarRating = ({ defaultRating = 0, onChange }) => {
             ))}
         </div>
     );
-};
+}
 
-export default InteractiveStarRating;
