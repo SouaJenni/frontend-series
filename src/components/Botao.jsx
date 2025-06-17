@@ -1,5 +1,5 @@
-import {Button} from "@blueprintjs/core";
-import React from "react";
+import {Button} from '@blueprintjs/core';
+import React from 'react';
 
 export function Botao ({ texto, onClick, intent, title }) {
     return (

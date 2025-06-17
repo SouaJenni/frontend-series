@@ -4,12 +4,12 @@ import {Provider} from 'react-redux';
 
 import './index.css';
 import {store} from './store.js';
-import {Roteador} from './routes/AppRoutes.jsx'
+import {AppRoutes} from './routes/AppRoutes.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>
-            <Roteador />
+            <AppRoutes />
         </Provider>
     </StrictMode>,
 );

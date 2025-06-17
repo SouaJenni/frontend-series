@@ -6,12 +6,12 @@ import {
     TextArea,
     Button,
     MenuItem,
-    Icon,
+    Icon, Card, H4,
 } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
-import { Botao } from "../components/Botao.jsx";
+import { Botao } from '../components/Botao.jsx';
 
 const titleOptions = [
     {titulo:'Matrix', ano:'1998', tipo:'filme'},
@@ -21,14 +21,13 @@ const titleOptions = [
 
 const renderItem = (item, { handleClick, modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
+    const icone = item.tipo === 'serie' ? 'video' : 'film';
     return (
-        <MenuItem
-            active={modifiers.active}
-            key={item.titulo}
-            text={item.titulo}
-            onClick={handleClick}
-        />
-
+        <Card>
+            <Icon color={'#1c1c1c'} icon={icone}/>
+            <H4>{item.titulo}</H4>
+            <p>{item.ano}</p>
+        </Card>
     );
 };
 
@@ -36,7 +35,7 @@ const handleClick = () => {
     alert('Botão clicado!');
 };
 
-const FormDeCadastro = () => {
+const AddSerie = () => {
     return (
         <div style={{ padding: '2rem', maxWidth: '600px' }}>
             <FormGroup label="Título" labelFor="title-input">
@@ -76,4 +75,4 @@ const FormDeCadastro = () => {
     );
 };
 
-export default FormDeCadastro;
+export default AddSerie;

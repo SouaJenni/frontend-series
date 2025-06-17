@@ -5,12 +5,14 @@ const handleClick = () => {
     alert('Botão clicado!');
 };
 
-const Catalogo = () => {
+const Home = () => {
     return (
-        <Botao texto='Cadastrar' title='Cadastrar' onClick={handleClick} intent='primary' />
-    )
-}
+        <div>
+            <Botao texto='Cadastrar' title='Cadastrar' onClick={handleClick} intent='primary' />
+        </div>
+    );
+};
 
-export default Catalogo;
+export default Home;
 
 
