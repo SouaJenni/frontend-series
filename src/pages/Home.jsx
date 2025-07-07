@@ -1,17 +1,21 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
+
 import {Botao} from '../components/Botao.jsx';
 
-const handleClick = () => {
-    alert('Botão clicado!');
-};
+function Home() {
+    const navigate = useNavigate();
 
-const Home = () => {
+    const handleCadastrarClick = () => {
+        navigate("/cadastrar");
+    };
+
     return (
         <div>
-            <Botao texto='Cadastrar' title='Cadastrar' onClick={handleClick} intent='primary' />
+            <Botao texto='Cadastrar' title='Cadastrar' onClick={handleCadastrarClick} intent='primary'/>
         </div>
     );
-};
+}
 
 export default Home;
 

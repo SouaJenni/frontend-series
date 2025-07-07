@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 import {
     InputGroup,
@@ -31,11 +32,17 @@ const renderItem = (item, { handleClick, modifiers }) => {
     );
 };
 
-const handleClick = () => {
-    alert('Botão clicado!');
-};
+function AddSerie() {
+    const navigate = useNavigate();
 
-const AddSerie = () => {
+    const handleSalvarClick = () => {
+        alert('Botão clicado!');
+    };
+
+    const handleVoltarClick = () => {
+        navigate("/");
+    };
+
     return (
         <div style={{ padding: '2rem', maxWidth: '600px' }}>
             <FormGroup label="Título" labelFor="title-input">
@@ -70,9 +77,11 @@ const AddSerie = () => {
                 </div>
             </FormGroup>
 
-            <Botao intent="primary" text="Salvar" title="Salvar" onClick={handleClick} />
+            <Botao intent="primary" texto="Salvar" title="Salvar" onClick={handleSalvarClick} />
+
+            <Botao intent="" texto="Voltar" title="Voltar" onClick={handleVoltarClick} />
         </div>
     );
-};
+}
 
 export default AddSerie;
