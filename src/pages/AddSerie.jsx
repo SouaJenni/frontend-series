@@ -6,7 +6,7 @@ import {
     FormGroup,
     TextArea,
     MenuItem,
-    Icon, Card, H4,
+    Icon,
 } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 
@@ -18,6 +18,10 @@ const titleOptions = [
     {titulo:'Star Wars', ano:'1965', tipo:'filme'},
     {titulo:'Todo Mundo Odeia o Chris', ano:'1980', tipo:'serie'}
 ];
+
+const handleClick = () => {
+    alert('Botão clicado!');
+};
 
 const renderItem = (item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
