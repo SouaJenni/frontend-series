@@ -1,13 +1,13 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 import {Botao} from '../components/Botao.jsx';
 
-function Home() {
+export function Home() {
     const navigate = useNavigate();
 
     const handleCadastrarClick = () => {
-        navigate("/cadastrar");
+        navigate('/cadastrar');
     };
 
     return (
@@ -17,6 +17,5 @@ function Home() {
     );
 }
 
-export default Home;
 
 

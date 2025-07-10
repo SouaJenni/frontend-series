@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Button, Icon } from '@blueprintjs/core';
 
 export function BotaoEstrela ({ defaultRating = 0, onChange }) {
@@ -17,7 +18,7 @@ export function BotaoEstrela ({ defaultRating = 0, onChange }) {
                     title={`${star} ${star === 1 ? 'estrela' : 'estrelas'}`}
                     icon={
                         <Icon
-                            icon="star"
+                            icon='star'
                             color={star <= rating ? '#FFC940' : '#CED9E0'}
                         />
                     }

@@ -1,9 +1,11 @@
+import React from 'react';
 import { useState } from 'react';
+
 import './App.css';
 
-import Home from './pages/Home.jsx';
+import { Home } from './pages/Home.jsx';
 
-function App() {
+export function App() {
     const [count, setCount] = useState(0);
 
     return (
@@ -13,4 +15,3 @@ function App() {
     );
 }
 
-export default App;

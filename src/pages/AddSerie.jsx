@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import React from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import {
     InputGroup,
     FormGroup,
     TextArea,
-    Button,
     MenuItem,
     Icon, Card, H4,
 } from '@blueprintjs/core';
@@ -17,22 +16,24 @@ import { Botao } from '../components/Botao.jsx';
 const titleOptions = [
     {titulo:'Matrix', ano:'1998', tipo:'filme'},
     {titulo:'Star Wars', ano:'1965', tipo:'filme'},
-    {titulo: 'Todo Mundo Odeia o Chris', ano:'1980', tipo:'serie'}
+    {titulo:'Todo Mundo Odeia o Chris', ano:'1980', tipo:'serie'}
 ];
 
-const renderItem = (item, { handleClick, modifiers }) => {
+const renderItem = (item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
     const icone = item.tipo === 'serie' ? 'video' : 'film';
     return (
-        <Card>
-            <Icon color={'#1c1c1c'} icon={icone}/>
-            <H4>{item.titulo}</H4>
-            <p>{item.ano}</p>
-        </Card>
+        <MenuItem
+            active={modifiers.active}
+            key={item.titulo}
+            text={item.titulo}
+            onClick={handleClick}
+            icon={<Icon icon={icone} />}
+        />
     );
 };
 
-function AddSerie() {
+export function AddSerie() {
     const navigate = useNavigate();
 
     const handleSalvarClick = () => {
@@ -40,35 +41,35 @@ function AddSerie() {
     };
 
     const handleVoltarClick = () => {
-        navigate("/");
+        navigate('/');
     };
 
     return (
         <div style={{ padding: '2rem', maxWidth: '600px' }}>
-            <FormGroup label="Título" labelFor="title-input">
+            <FormGroup label='Título' labelFor='title-input'>
                 <div style={{ position: 'relative' }}>
                     <Select
                         items={titleOptions}
                         itemRenderer={renderItem}
                         onItemSelect={() => {}}
-                        noResults={<MenuItem disabled text="Nenhum resultado" />}
+                        noResults={<MenuItem disabled text='Nenhum resultado' />}
                         filterable
                         popoverProps={{ usePortal: false }}
                     >
-                        <InputGroup id="title-input" placeholder="Selecione ou digite..." />
+                        <InputGroup id='title-input' placeholder='Selecione ou digite...' />
                     </Select>
                 </div>
             </FormGroup>
 
-            <FormGroup label="Comentário" labelFor="comment-textarea">
+            <FormGroup label='Comentário' labelFor='comment-textarea'>
                 <TextArea
-                    id="comment-textarea"
+                    id='comment-textarea'
                     fill
-                    placeholder="Deixe um comentário..."
+                    placeholder='Deixe um comentário...'
                 />
             </FormGroup>
 
-            <FormGroup label="Avaliação">
+            <FormGroup label='Avaliação'>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <BotaoEstrela
                         defaultRating={3}
@@ -77,11 +78,10 @@ function AddSerie() {
                 </div>
             </FormGroup>
 
-            <Botao intent="primary" texto="Salvar" title="Salvar" onClick={handleSalvarClick} />
+            <Botao intent='primary' texto='Salvar' title='Salvar' onClick={handleSalvarClick} />
 
-            <Botao intent="" texto="Voltar" title="Voltar" onClick={handleVoltarClick} />
+            <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
         </div>
     );
 }
 
-export default AddSerie;

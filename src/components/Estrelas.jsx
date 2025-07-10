@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Icon } from '@blueprintjs/core';
 
 export function Estrelas ({ total = 5, active = 0 }) {
@@ -9,7 +10,7 @@ export function Estrelas ({ total = 5, active = 0 }) {
                 return (
                     <Icon
                         key={star}
-                        icon="star"
+                        icon='star'
                         color={star <= active ? '#FFC940' : '#CED9E0'}
                     />
                 );
