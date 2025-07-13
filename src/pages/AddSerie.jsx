@@ -12,6 +12,9 @@ import { Select } from '@blueprintjs/select';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
+import {buscarSugestoes} from '../state/actions.js';
+import {useDispatch, useSelector} from 'react-redux';
+import {getSugestoes} from '../state/selectors.js';
 
 const titleOptions = [
     {titulo:'Matrix', ano:'1998', tipo:'filme'},
@@ -39,6 +42,9 @@ const renderItem = (item, { modifiers }) => {
 
 export function AddSerie() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const sugestoes = useSelector(getSugestoes);
 
     const handleSalvarClick = () => {
         alert('Botão clicado!');
@@ -53,14 +59,26 @@ export function AddSerie() {
             <FormGroup label='Título' labelFor='title-input'>
                 <div style={{ position: 'relative' }}>
                     <Select
-                        items={titleOptions}
+                        items={sugestoes}
                         itemRenderer={renderItem}
                         onItemSelect={() => {}}
                         noResults={<MenuItem disabled text='Nenhum resultado' />}
-                        filterable
-                        popoverProps={{ usePortal: false }}
+                        filterable={false}
+                        popoverProps={{
+                            usePortal: false,
+                            popoverClassName: 'custom-suggestion-popover',
+                            minimal: true,
+                            modifiers: [
+                                { name: 'offset', options: { offset: [0, 2] } },
+                                { name: 'preventOverflow', options: { padding: 8 } }
+                            ]
+                        }}
                     >
-                        <InputGroup id='title-input' placeholder='Selecione ou digite...' />
+                        <InputGroup
+                            id='title-input'
+                            placeholder='Selecione ou digite...'
+                            onChange={(event) =>dispatch(buscarSugestoes(event.target.value))}
+                        />
                     </Select>
                 </div>
             </FormGroup>
