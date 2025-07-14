@@ -16,12 +16,6 @@ import {buscarSugestoes} from '../state/actions.js';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSugestoes} from '../state/selectors.js';
 
-const titleOptions = [
-    {titulo:'Matrix', ano:'1998', tipo:'filme'},
-    {titulo:'Star Wars', ano:'1965', tipo:'filme'},
-    {titulo:'Todo Mundo Odeia o Chris', ano:'1980', tipo:'serie'}
-];
-
 const handleClick = () => {
     alert('Botão clicado!');
 };
@@ -31,11 +25,11 @@ const renderItem = (item, { modifiers }) => {
     const icone = item.tipo === 'serie' ? 'video' : 'film';
     return (
         <MenuItem
-            active={modifiers.active}
-            key={item.titulo}
+            icon={<Icon color={'#1c1c1c'} icon={icone} />}
             text={item.titulo}
+            label={item.ano}
+            shouldDismissPopover={false}
             onClick={handleClick}
-            icon={<Icon icon={icone} />}
         />
     );
 };

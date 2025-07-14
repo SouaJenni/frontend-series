@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
+import PropTypes from 'prop-types';
 import { Button, Icon } from '@blueprintjs/core';
 
-export function BotaoEstrela ({ defaultRating = 0, onChange }) {
+export function BotaoEstrela({ defaultRating = 0, onChange }) {
     const [rating, setRating] = useState(defaultRating);
 
     const handleClick = (star) => {
@@ -29,3 +29,7 @@ export function BotaoEstrela ({ defaultRating = 0, onChange }) {
     );
 }
 
+BotaoEstrela.propTypes = {
+    defaultRating: PropTypes.number,
+    onChange: PropTypes.func
+};
