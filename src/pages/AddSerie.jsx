@@ -23,13 +23,20 @@ const handleClick = () => {
 const renderItem = (item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
     const icone = item.tipo === 'serie' ? 'video' : 'film';
+
     return (
         <MenuItem
-            icon={<Icon color={'#1c1c1c'} icon={icone} />}
-            text={item.titulo}
-            label={item.ano}
-            shouldDismissPopover={false}
+            className="sugestao-item"
+            key={item.titulo + item.ano}
             onClick={handleClick}
+            shouldDismissPopover={false}
+            text={
+                <div className="sugestao-conteudo">
+                    <Icon icon={icone} color="#f0f0f0" style={{ marginRight: 8 }} />
+                    <span className="sugestao-titulo">{item.titulo}</span>
+                    <span className="sugestao-ano">{item.ano}</span>
+                </div>
+            }
         />
     );
 };
@@ -37,8 +44,8 @@ const renderItem = (item, { modifiers }) => {
 export function AddSerie() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const sugestoes = useSelector(getSugestoes);
+    const [titulo, setTitulo] = React.useState("");
 
     const handleSalvarClick = () => {
         alert('Botão clicado!');
@@ -48,25 +55,26 @@ export function AddSerie() {
         navigate('/');
     };
 
+    const handleSugestaoSelect = (item) => {
+        setTitulo(item.titulo);
+    };
+
     return (
-        <div style={{ padding: '2rem', maxWidth: '600px' }}>
-            <FormGroup label='Título' labelFor='title-input'>
+        <div className="add-serie-container">
+            <FormGroup label='Título' labelFor='title-input' className="add-serie-formgroup">
                 <div style={{ position: 'relative' }}>
                     <Select
                         items={sugestoes}
                         itemRenderer={renderItem}
-                        onItemSelect={() => {}}
+                        onItemSelect={handleSugestaoSelect}
                         noResults={<MenuItem disabled text='Nenhum resultado' />}
                         filterable={false}
                         popoverProps={{
-                            usePortal: false,
-                            popoverClassName: 'custom-suggestion-popover',
                             minimal: true,
-                            modifiers: [
-                                { name: 'offset', options: { offset: [0, 2] } },
-                                { name: 'preventOverflow', options: { padding: 8 } }
-                            ]
+                            usePortal: false,
+                            popoverClassName: "custom-popover"
                         }}
+                        className="add-serie-select"
                     >
                         <InputGroup
                             id='title-input'
@@ -94,10 +102,10 @@ export function AddSerie() {
                 </div>
             </FormGroup>
 
-            <Botao intent='primary' texto='Salvar' title='Salvar' onClick={handleSalvarClick} />
-
-            <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
+            <div className="button-group">
+                <Botao intent='primary' texto='Salvar' title='Salvar' onClick={handleSalvarClick} />
+                <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
+            </div>
         </div>
     );
 }
-

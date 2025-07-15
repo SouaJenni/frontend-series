@@ -1,68 +1,187 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
+  line-height: 1.5;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #8ab4f8;
+  text-decoration: none;
+}
+a:hover {
+  color: #a0c0ff;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #555;
+  background-color: #2c2c2c;
+  color: #f0f0f0;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  border-radius: 8px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.25s, border-color 0.25s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+button:hover {
+  background-color: #3a3a3a;
+  border-color: #8ab4f8;
+}
+
+button:focus {
+  outline: 2px solid #8ab4f8;
+}
+
+/* Botões específicos */
+button.primary {
+  background-color: #4f46e5;
+  border-color: transparent;
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #4338ca;
+}
+
+/* Container principal */
+.add-serie-container {
+  position: relative;
+  background-color: #2c2c2c;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 90%;
+  margin: 2rem auto;
+}
+
+/* Espaço entre os blocos do formulário */
+.add-serie-formgroup {
+  margin-bottom: 1.5rem;
+}
+
+/* Select */
+.add-serie-select input {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  border: 1px solid #444;
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.add-serie-select select {
+  position: relative;
+}
+
+/* Estilo do menu flutuante (popover) */
+.custom-popover {
+  position: relative;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 0;
+  z-index: 1000;
+  min-width: 100%;
+  text-decoration: none;
+}
+
+/* Estilo de cada item no menu */
+.bp5-menu .bp5-menu-item {
+  list-style-type: none;
+  color: #e0e0e0;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s;
+}
+
+/* Hover do item */
+.bp5-menu .bp5-menu-item:hover {
+  background-color: #3c3c3c;
+  color: #ffffff;
+}
+
+/* Texto "Nenhum resultado" */
+.bp5-menu .bp5-menu-item.bp5-disabled {
+  color: #888;
+  cursor: default;
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 0.75rem;
+  resize: vertical;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .add-serie-container {
+    padding: 1rem;
   }
 }
+
+/* Remove bullets, espaçamento e alinha horizontalmente */
+.sugestao-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Título maior à esquerda */
+.sugestao-titulo {
+  flex: 1;
+  color: #f0f0f0;
+  font-weight: 500;
+}
+
+/* Ano mais claro e alinhado à direita */
+.sugestao-ano {
+  color: #aaa;
+  font-size: 0.875rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* Ajuste geral nos itens */
+.bp5-menu .bp5-menu-item.sugestao-item {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.bp5-menu .bp5-menu-item.sugestao-item:hover {
+  background-color: #3a3a3a;
+}
+
