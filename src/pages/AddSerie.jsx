@@ -94,12 +94,10 @@ export function AddSerie() {
             </FormGroup>
 
             <FormGroup label='Avaliação'>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <BotaoEstrela
                         defaultRating={3}
                         onChange={(value) => console.log('Nova avaliação:', value)}
                     />
-                </div>
             </FormGroup>
 
             <div className="button-group">

@@ -7,6 +7,9 @@ import { store } from './store.js';
 import { AppRoutes } from './routes/AppRoutes.jsx';
 
 import './index.css';
+import './components/botao.css';
+import './pages/addSerie.css';
+import './pages/menuFlutuante.css';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
