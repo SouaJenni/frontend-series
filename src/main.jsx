@@ -8,6 +8,7 @@ import { AppRoutes } from './routes/AppRoutes.jsx';
 
 import './index.css';
 import './components/botao.css';
+import './components/botaoEstrela.css';
 import './pages/addSerie.css';
 import './pages/menuFlutuante.css';
 

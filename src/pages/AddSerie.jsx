@@ -45,7 +45,7 @@ export function AddSerie() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const sugestoes = useSelector(getSugestoes);
-    const [titulo, setTitulo] = React.useState("");
+    const [setTitulo] = React.useState('');
 
     const handleSalvarClick = () => {
         alert('Botão clicado!');
@@ -72,7 +72,7 @@ export function AddSerie() {
                         popoverProps={{
                             minimal: true,
                             usePortal: false,
-                            popoverClassName: "custom-popover"
+                            popoverClassName: 'custom-popover'
                         }}
                         className="add-serie-select"
                     >
@@ -94,10 +94,10 @@ export function AddSerie() {
             </FormGroup>
 
             <FormGroup label='Avaliação'>
-                    <BotaoEstrela
-                        defaultRating={3}
-                        onChange={(value) => console.log('Nova avaliação:', value)}
-                    />
+                <BotaoEstrela
+                    defaultRating={3}
+                    onChange={(value) => console.log('Nova avaliação:', value)}
+                />
             </FormGroup>
 
             <div className="button-group">

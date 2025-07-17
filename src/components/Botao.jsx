@@ -5,7 +5,7 @@ import {Button} from '@blueprintjs/core';
 
 export function Botao ({ texto, onClick, intent, title }) {
     return (
-        <div style={{ padding: '2rem' }}>
+        <div>
             <Button intent={intent} title={title} onClick={onClick} text={texto}>
             </Button>
         </div>

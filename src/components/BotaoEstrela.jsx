@@ -11,7 +11,7 @@ export function BotaoEstrela({ defaultRating = 0, onChange }) {
     };
 
     return (
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div className="botao-estrela">
             {[1, 2, 3, 4, 5].map((star) => (
                 <Button
                     key={star}
