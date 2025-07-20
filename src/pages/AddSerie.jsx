@@ -2,13 +2,13 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
-    InputGroup,
     FormGroup,
     TextArea,
     MenuItem,
-    Icon,
+    Icon, Card,
 } from '@blueprintjs/core';
-import { Select } from '@blueprintjs/select';
+import { Suggest} from '@blueprintjs/select';
+import '@blueprintjs/core/lib/css/blueprint.css';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
@@ -26,15 +26,14 @@ const renderItem = (item, { modifiers }) => {
 
     return (
         <MenuItem
-            className="sugestao-item"
             key={item.titulo + item.ano}
             onClick={handleClick}
             shouldDismissPopover={false}
             text={
-                <div className="sugestao-conteudo">
+                <div >
                     <Icon icon={icone} color="#f0f0f0" style={{ marginRight: 8 }} />
-                    <span className="sugestao-titulo">{item.titulo}</span>
-                    <span className="sugestao-ano">{item.ano}</span>
+                    <span>{item.titulo}</span>
+                    <span>{item.ano}</span>
                 </div>
             }
         />
@@ -60,50 +59,42 @@ export function AddSerie() {
     };
 
     return (
-        <div className="add-serie-container">
-            <FormGroup label='Título' labelFor='title-input' className="add-serie-formgroup">
-                <div style={{ position: 'relative' }}>
-                    <Select
+        <div className="bp5-dark">
+            <Card>
+                <FormGroup label='Título' labelFor='title-input'>
+                    <Suggest
                         items={sugestoes}
                         itemRenderer={renderItem}
                         onItemSelect={handleSugestaoSelect}
+                        onQueryChange={(query)=> dispatch(buscarSugestoes(query))}
                         noResults={<MenuItem disabled text='Nenhum resultado' />}
                         filterable={false}
                         popoverProps={{
-                            minimal: true,
-                            usePortal: false,
-                            popoverClassName: 'custom-popover'
+                            matchTargetWidth: true
                         }}
-                        className="add-serie-select"
-                    >
-                        <InputGroup
-                            id='title-input'
-                            placeholder='Selecione ou digite...'
-                            onChange={(event) =>dispatch(buscarSugestoes(event.target.value))}
-                        />
-                    </Select>
+                    />
+                </FormGroup>
+
+                <FormGroup label='Comentário' labelFor='comment-textarea'>
+                    <TextArea
+                        id='comment-textarea'
+                        fill
+                        placeholder='Deixe um comentário...'
+                    />
+                </FormGroup>
+
+                <FormGroup label='Avaliação'>
+                    <BotaoEstrela
+                        defaultRating={3}
+                        onChange={(value) => console.log('Nova avaliação:', value)}
+                    />
+                </FormGroup>
+
+                <div>
+                    <Botao intent='primary' texto='Salvar' title='Salvar' onClick={handleSalvarClick} />
+                    <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
                 </div>
-            </FormGroup>
-
-            <FormGroup label='Comentário' labelFor='comment-textarea'>
-                <TextArea
-                    id='comment-textarea'
-                    fill
-                    placeholder='Deixe um comentário...'
-                />
-            </FormGroup>
-
-            <FormGroup label='Avaliação'>
-                <BotaoEstrela
-                    defaultRating={3}
-                    onChange={(value) => console.log('Nova avaliação:', value)}
-                />
-            </FormGroup>
-
-            <div className="button-group">
-                <Botao intent='primary' texto='Salvar' title='Salvar' onClick={handleSalvarClick} />
-                <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
-            </div>
+            </Card>
         </div>
     );
 }
