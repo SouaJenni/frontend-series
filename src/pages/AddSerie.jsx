@@ -12,7 +12,7 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
-import {buscarSugestoes, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
+import {buscarSugestoes, salvarSerie, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
 import {useDispatch, useSelector} from 'react-redux';
 import {getComentario, getNotaUsuario, getSugestoes} from '../state/selectors.js';
 
@@ -44,10 +44,6 @@ export function AddSerie() {
     const comentario = useSelector(getComentario);
     const notaUsuario = useSelector(getNotaUsuario);
     const [setTitulo] = React.useState('');
-
-    const handleSalvarClick = () => {
-        alert('Botão clicado!');
-    };
 
     const handleVoltarClick = () => {
         navigate('/');
@@ -92,7 +88,7 @@ export function AddSerie() {
                 </FormGroup>
 
                 <div>
-                    <Botao intent='primary' texto='Salvar' title='Salvar' onClick={handleSalvarClick} />
+                    <Botao intent='primary' texto='Salvar' title='Salvar' onClick={() => dispatch(salvarSerie())} />
                     <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
                 </div>
             </Card>

@@ -1,3 +1,6 @@
+import {getSeries} from "./selectors.js";
+import {mostrarErro} from '../Utils.js';
+
 export function buscarSugestoes(query) {
     return async (dispatch) => {
         const response = await fetch(`api/series/sugestoes/busca?q=${encodeURIComponent(query)}`);
@@ -5,9 +8,37 @@ export function buscarSugestoes(query) {
             return;
         }
         const sugestoes = await response.json();
-        console.log('sugestoes', sugestoes);
         dispatch(setSugestoes(sugestoes));
     };
+}
+
+export function salvarSerie() {
+    return async (dispatch, getState) => {
+        const serie = getSeries(getState());
+        if (!serie.titulo) {
+            alert('Você deve selecionar uma série ou filme antes de salvar.');
+            return;
+        }
+        if (!serie.notaUsuario) {
+            alert('Você deve selecionar uma nota antes de salvar.');
+            return;
+        }
+        try {
+            const result = await fetch('api/series', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(serie)
+            })
+            if(!result.ok){
+                const error = await result.json();
+                alert(error.detail);
+            }
+        } catch (err) {
+            alert(err);
+        }
+    }
 }
 
 function setSugestoes(sugestoes) {
