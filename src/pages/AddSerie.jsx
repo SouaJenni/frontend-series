@@ -12,26 +12,23 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
-import {buscarSugestoes} from '../state/actions.js';
+import {buscarSugestoes, setSerie} from '../state/actions.js';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSugestoes} from '../state/selectors.js';
-
-const handleClick = () => {
-    alert('Botão clicado!');
-};
 
 const renderItem = (item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
     const icone = item.tipo === 'serie' ? 'video' : 'film';
 
+
     return (
         <MenuItem
             key={item.titulo + item.ano}
-            onClick={handleClick}
+            onClick={(item) => dispatch(setSerie(item))}
             shouldDismissPopover={false}
             text={
                 <div >
-                    <Icon icon={icone} color="#f0f0f0" style={{ marginRight: 8 }} />
+                    <Icon icon={icone} color="#f0f0f0" />
                     <span>{item.titulo}</span>
                     <span>{item.ano}</span>
                 </div>

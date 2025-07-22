@@ -16,3 +16,10 @@ function setSugestoes(sugestoes) {
         payload: sugestoes
     };
 }
+
+export function setSerie(serie) {
+    return {
+        type: 'SET_SERIE',
+        payload: serie
+    };
+}
