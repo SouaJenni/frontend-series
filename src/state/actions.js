@@ -23,3 +23,17 @@ export function setSerie(serie) {
         payload: serie
     };
 }
+
+export function setComentario(comentario) {
+    return {
+        type: 'SET_COMENTARIO',
+        payload: comentario
+    };
+}
+
+export function setNotaUsuario(notaUsuario) {
+    return {
+        type: 'SET_NOTA',
+        payload: notaUsuario
+    };
+}

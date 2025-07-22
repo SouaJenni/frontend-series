@@ -12,11 +12,11 @@ import '@blueprintjs/core/lib/css/blueprint.css';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
-import {buscarSugestoes, setSerie} from '../state/actions.js';
+import {buscarSugestoes, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
 import {useDispatch, useSelector} from 'react-redux';
-import {getSugestoes} from '../state/selectors.js';
+import {getComentario, getNotaUsuario, getSugestoes} from '../state/selectors.js';
 
-const renderItem = (item, { modifiers }) => {
+const renderItem = (dispatch, item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
     const icone = item.tipo === 'serie' ? 'video' : 'film';
 
@@ -24,8 +24,8 @@ const renderItem = (item, { modifiers }) => {
     return (
         <MenuItem
             key={item.titulo + item.ano}
-            onClick={(item) => dispatch(setSerie(item))}
-            shouldDismissPopover={false}
+            onClick={() => dispatch(setSerie(item))}
+            shouldDismissPopover={true}
             text={
                 <div >
                     <Icon icon={icone} color="#f0f0f0" />
@@ -41,6 +41,8 @@ export function AddSerie() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const sugestoes = useSelector(getSugestoes);
+    const comentario = useSelector(getComentario);
+    const notaUsuario = useSelector(getNotaUsuario);
     const [setTitulo] = React.useState('');
 
     const handleSalvarClick = () => {
@@ -61,7 +63,7 @@ export function AddSerie() {
                 <FormGroup label='Título' labelFor='title-input'>
                     <Suggest
                         items={sugestoes}
-                        itemRenderer={renderItem}
+                        itemRenderer={renderItem.bind(null, dispatch)}
                         onItemSelect={handleSugestaoSelect}
                         onQueryChange={(query)=> dispatch(buscarSugestoes(query))}
                         noResults={<MenuItem disabled text='Nenhum resultado' />}
@@ -74,6 +76,8 @@ export function AddSerie() {
 
                 <FormGroup label='Comentário' labelFor='comment-textarea'>
                     <TextArea
+                        value={comentario}
+                        onChange={(event) => dispatch(setComentario(event.target.value))}
                         id='comment-textarea'
                         fill
                         placeholder='Deixe um comentário...'
@@ -82,8 +86,8 @@ export function AddSerie() {
 
                 <FormGroup label='Avaliação'>
                     <BotaoEstrela
-                        defaultRating={3}
-                        onChange={(value) => console.log('Nova avaliação:', value)}
+                        defaultRating={notaUsuario}
+                        onChange={(value) => dispatch(setNotaUsuario(value))}
                     />
                 </FormGroup>
 
