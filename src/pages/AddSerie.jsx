@@ -14,12 +14,11 @@ import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
 import {buscarSugestoes, salvarSerie, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
 import {useDispatch, useSelector} from 'react-redux';
-import {getComentario, getNotaUsuario, getSugestoes} from '../state/selectors.js';
+import {getComentario, getNotaUsuario, getSeries, getSugestoes} from '../state/selectors.js';
 
 const renderItem = (dispatch, item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
     const icone = item.tipo === 'serie' ? 'video' : 'film';
-
 
     return (
         <MenuItem
@@ -38,29 +37,22 @@ const renderItem = (dispatch, item, { modifiers }) => {
 };
 
 export function AddSerie() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const sugestoes = useSelector(getSugestoes);
     const comentario = useSelector(getComentario);
     const notaUsuario = useSelector(getNotaUsuario);
-    const [setTitulo] = React.useState('');
-
-    const handleVoltarClick = () => {
-        navigate('/');
-    };
-
-    const handleSugestaoSelect = (item) => {
-        setTitulo(item.titulo);
-    };
+    const serieSelecionada = useSelector(getSeries);
+    const navigate = useNavigate();
 
     return (
         <div className="bp5-dark">
             <Card>
                 <FormGroup label='Título' labelFor='title-input'>
                     <Suggest
+                        selectedItem={serieSelecionada}
                         items={sugestoes}
+                        inputValueRenderer={(item) => `${item.titulo} - ${item.ano}`}
                         itemRenderer={renderItem.bind(null, dispatch)}
-                        onItemSelect={handleSugestaoSelect}
                         onQueryChange={(query)=> dispatch(buscarSugestoes(query))}
                         noResults={<MenuItem disabled text='Nenhum resultado' />}
                         filterable={false}
@@ -88,8 +80,11 @@ export function AddSerie() {
                 </FormGroup>
 
                 <div>
-                    <Botao intent='primary' texto='Salvar' title='Salvar' onClick={() => dispatch(salvarSerie())} />
-                    <Botao intent='' texto='Voltar' title='Voltar' onClick={handleVoltarClick} />
+                    <Botao intent='primary' texto='Salvar' title='Salvar' onClick={() => {
+                        dispatch(salvarSerie());
+                        navigate(-1);
+                    }} />
+                    <Botao intent='' texto='Voltar' title='Voltar' onClick={() => navigate('/')} />
                 </div>
             </Card>
         </div>

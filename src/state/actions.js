@@ -1,5 +1,4 @@
-import {getSeries} from "./selectors.js";
-import {mostrarErro} from '../Utils.js';
+import {getSeries} from './selectors.js';
 
 export function buscarSugestoes(query) {
     return async (dispatch) => {
@@ -30,7 +29,7 @@ export function salvarSerie() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(serie)
-            })
+            });
             if(!result.ok){
                 const error = await result.json();
                 alert(error.detail);
@@ -38,7 +37,7 @@ export function salvarSerie() {
         } catch (err) {
             alert(err);
         }
-    }
+    };
 }
 
 function setSugestoes(sugestoes) {
