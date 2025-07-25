@@ -11,7 +11,7 @@ export function buscarSugestoes(query) {
     };
 }
 
-export function salvarSerie() {
+export function salvarSerie(navigate) {
     return async (dispatch, getState) => {
         const serie = getSeries(getState());
         if (!serie.titulo) {
@@ -33,14 +33,17 @@ export function salvarSerie() {
             if(!result.ok){
                 const error = await result.json();
                 alert(error.detail);
+                return;
             }
+            alert('Série/Filme salvo com sucesso!');
+            navigate('/');
         } catch (err) {
             alert(err);
         }
     };
 }
 
-function setSugestoes(sugestoes) {
+export function setSugestoes(sugestoes) {
     return {
         type: 'BUSCAR_SUGESTOES',
         payload: sugestoes
