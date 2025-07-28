@@ -31,7 +31,7 @@ export function Home() {
                         <H3>{serie.titulo}</H3>
                         <p>{serie.ano}</p>
                         <Tooltip
-                            content={`Nota IMDb: ${serie.notaImdb}`}
+                            content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}
                         >
                             <Estrelas active={serie.notaImdb}/>
                         </Tooltip>
