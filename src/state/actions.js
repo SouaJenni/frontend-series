@@ -11,6 +11,17 @@ export function buscarSugestoes(query) {
     };
 }
 
+export function seriesSalvas(query) {
+    return async (dispatch) => {
+        const response = await fetch(`http://localhost:3000/series?page=${query}&limit=5`);
+        if (!response.ok) {
+            return;
+        }
+        const minhasSeries = await response.json();
+        dispatch(setMinhasSeries(minhasSeries));
+    };
+}
+
 export function salvarSerie(navigate) {
     return async (dispatch, getState) => {
         const serie = getSeries(getState());
@@ -68,5 +79,12 @@ export function setNotaUsuario(notaUsuario) {
     return {
         type: 'SET_NOTA',
         payload: notaUsuario
+    };
+}
+
+export function setMinhasSeries(minhasSeries) {
+    return {
+        type: 'SET_MINHAS_SERIES',
+        payload: minhasSeries
     };
 }
