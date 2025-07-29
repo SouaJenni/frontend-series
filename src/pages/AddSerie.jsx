@@ -14,7 +14,7 @@ import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';
 import {buscarSugestoes, salvarSerie, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
 import {setSugestoes} from '../state/actions.js';
-import {getComentario, getNotaUsuario, getSeries, getSugestoes} from '../state/selectors.js';
+import {getComentario, getNotaUsuario, getSerie, getSugestoes} from '../state/selectors.js';
 
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -48,7 +48,7 @@ export function AddSerie() {
     const sugestoes = useSelector(getSugestoes);
     const comentario = useSelector(getComentario);
     const notaUsuario = useSelector(getNotaUsuario);
-    const serieSelecionada = useSelector(getSeries);
+    const serieSelecionada = useSelector(getSerie);
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -13,17 +13,17 @@ export const seriesReducer = (state = estadoInicial, action) => {
     case 'SET_SERIE':
         return {
             ...state,
-            series: action.payload
+            serie: action.payload
         };
     case 'SET_COMENTARIO':
         return {
             ...state,
-            series: {...state.series, comentario: action.payload}
+            serie: {...state.serie, comentario: action.payload}
         };
     case 'SET_NOTA':
         return {
             ...state,
-            series: {...state.series, notaUsuario: action.payload}
+            serie: {...state.serie, notaUsuario: action.payload}
         };
     case 'SET_MINHAS_SERIES':
         return {

@@ -15,7 +15,7 @@ export function Home() {
     const minhasSeries = useSelector(getMinhasSeries);
 
     useEffect(() => {
-        dispatch(seriesSalvas(1));
+        dispatch(seriesSalvas({page: 1}));
     }, [dispatch]);
 
     const handleCadastrarClick = () => {

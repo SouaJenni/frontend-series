@@ -1,4 +1,4 @@
-import {getSeries} from './selectors.js';
+import {getSerie} from './selectors.js';
 
 export function buscarSugestoes(query) {
     return async (dispatch) => {
@@ -13,7 +13,7 @@ export function buscarSugestoes(query) {
 
 export function seriesSalvas(query) {
     return async (dispatch) => {
-        const response = await fetch(`http://localhost:3000/series?page=${query}&limit=5`);
+        const response = await fetch(`http://localhost:3000/series?page=${query.page}&limit=5`);
         if (!response.ok) {
             return;
         }
@@ -24,7 +24,7 @@ export function seriesSalvas(query) {
 
 export function salvarSerie(navigate) {
     return async (dispatch, getState) => {
-        const serie = getSeries(getState());
+        const serie = getSerie(getState());
         if (!serie.titulo) {
             alert('Você deve selecionar uma série ou filme antes de salvar.');
             return;

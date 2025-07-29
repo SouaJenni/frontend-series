@@ -2,16 +2,16 @@ export function getSugestoes(state) {
     return state.series.sugestoes;
 }
 
-export function getSeries(state) {
-    return state.series.series;
+export function getSerie(state) {
+    return state.series.serie;
 }
 
 export function getComentario(state) {
-    return state.series.series?.comentario || '';
+    return state.series.serie?.comentario || '';
 }
 
 export function getNotaUsuario(state) {
-    return state.series.series?.notaUsuario || 3;
+    return state.series.serie?.notaUsuario || 3;
 }
 
 export function getMinhasSeries(state) {
