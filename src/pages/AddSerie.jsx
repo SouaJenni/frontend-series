@@ -8,7 +8,6 @@ import {
     Icon, Card,
 } from '@blueprintjs/core';
 import { Suggest} from '@blueprintjs/select';
-import '@blueprintjs/core/lib/css/blueprint.css';
 
 import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
 import { Botao } from '../components/Botao.jsx';

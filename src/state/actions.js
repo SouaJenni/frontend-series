@@ -22,17 +22,14 @@ export function seriesSalvas(query) {
     };
 }
 
-export function salvarSerie(navigate) {
+export function salvarSerie(navigate, notaUsuario) {
     return async (dispatch, getState) => {
         const serie = getSerie(getState());
         if (!serie.titulo) {
             alert('Você deve selecionar uma série ou filme antes de salvar.');
             return;
         }
-        if (!serie.notaUsuario) {
-            alert('Você deve selecionar uma nota antes de salvar.');
-            return;
-        }
+        serie.notaUsuario = notaUsuario || 3;
         try {
             const result = await fetch('api/series', {
                 method: 'POST',
@@ -82,9 +79,15 @@ export function setNotaUsuario(notaUsuario) {
     };
 }
 
-export function setMinhasSeries(minhasSeries) {
+function setMinhasSeries(minhasSeries) {
     return {
         type: 'SET_MINHAS_SERIES',
         payload: minhasSeries
+    };
+}
+
+export function resetMinhasSeries() {
+    return {
+        type: 'RESET_MINHAS_SERIES'
     };
 }

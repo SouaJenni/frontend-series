@@ -28,7 +28,12 @@ export const seriesReducer = (state = estadoInicial, action) => {
     case 'SET_MINHAS_SERIES':
         return {
             ...state,
-            series: action.payload
+            series: [...state.series, ...action.payload]
+        };
+    case 'RESET_MINHAS_SERIES':
+        return {
+            ...state,
+            series: []
         };
     default:
         return state;
