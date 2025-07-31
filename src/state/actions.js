@@ -1,4 +1,4 @@
-import {getSerie} from './selectors.js';
+import {getNotaUsuario, getSerie} from './selectors.js';
 
 export function buscarSugestoes(query) {
     return async (dispatch) => {
@@ -22,9 +22,11 @@ export function seriesSalvas(query) {
     };
 }
 
-export function salvarSerie(navigate, notaUsuario) {
+export function salvarSerie(navigate) {
     return async (dispatch, getState) => {
         const serie = getSerie(getState());
+        const notaUsuario = getNotaUsuario(getState());
+
         if (!serie.titulo) {
             alert('Você deve selecionar uma série ou filme antes de salvar.');
             return;

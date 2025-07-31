@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {
     FormGroup,
     TextArea,
     MenuItem,
-    Icon, Card,
+    Icon, Card, Intent,
 } from '@blueprintjs/core';
 import { Suggest} from '@blueprintjs/select';
 
@@ -14,8 +15,6 @@ import { Botao } from '../components/Botao.jsx';
 import {buscarSugestoes, salvarSerie, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
 import {setSugestoes} from '../state/actions.js';
 import {getComentario, getNotaUsuario, getSerie, getSugestoes} from '../state/selectors.js';
-
-import {useDispatch, useSelector} from 'react-redux';
 
 const renderItem = (dispatch, item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;
@@ -94,8 +93,8 @@ export function AddSerie() {
                 </FormGroup>
 
                 <div>
-                    <Botao intent='primary' texto='Salvar' title='Salvar' onClick={() => dispatch(salvarSerie(navigate))} />
-                    <Botao intent='' texto='Voltar' title='Voltar' onClick={() => navigate('/')} />
+                    <Botao intent={Intent.DANGER} texto='Salvar' title='Salvar' onClick={() => dispatch(salvarSerie(navigate))} />
+                    <Botao intent={Intent.NONE} texto='Voltar' title='Voltar' onClick={() => navigate('/')} />
                 </div>
             </Card>
         </div>

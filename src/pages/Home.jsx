@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Button, Card, H3, Tooltip} from '@blueprintjs/core';
+import {Button, Card, H1, H3, Intent, Tooltip} from '@blueprintjs/core';
 
 import {Botao} from '../components/Botao.jsx';
 import {Estrelas} from '../components/Estrelas.jsx';
@@ -41,14 +41,16 @@ export function Home() {
 
     return (
         <div className="bp5-dark">
+            <H1>SEU CATÁLOGO</H1>
             <div style={{display: 'flex'}}>
                 <Button icon={'caret-left'} title={'Flecha-para-esquerda'} onClick={() => scroll('esquerda')}/>
                 <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
                     {minhasSeries.map((serie, index) => (
-                        <Card key={index}>
+                        <Card key={index}
+                            onClick={() => navigate('/atualizar')}
+                            style={{cursor: 'pointer'}}
+                        >
                             <img src={serie.capa} alt={serie.titulo} style={{width:'200px'}}/>
-                            <H3>{serie.titulo}</H3>
-                            <p>{serie.ano}</p>
                             <Tooltip
                                 content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}
                             >
@@ -59,12 +61,16 @@ export function Home() {
                             >
                                 <Estrelas active={serie.notaUsuario}/>
                             </Tooltip>
+                            <H3>{serie.titulo}</H3>
+                            <p>{serie.ano}</p>
                         </Card>
                     ))}
                 </div>
                 <Button icon={'caret-right'} title={'Flecha-para-direita'} onClick={() => scroll('direita')}/>
             </div>
-            <Botao texto='Cadastrar' title='Cadastrar' onClick={handleCadastrarClick} intent='primary' />
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
+                <Botao texto='Cadastrar' title='Cadastrar' onClick={handleCadastrarClick} intent={Intent.DANGER} />
+            </div>
         </div>
     );
 }
