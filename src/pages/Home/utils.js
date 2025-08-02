@@ -1,4 +1,4 @@
-export function funcaoScroll (scrollRef, direction, setPagina, pagina) {
+export function scroll (scrollRef, direction, setPagina, pagina) {
     if (!scrollRef.current) return;
     const scrollAmount = 200;
     if (direction === 'direita') {

@@ -15,6 +15,11 @@ export const seriesReducer = (state = estadoInicial, action) => {
             ...state,
             serie: action.payload
         };
+    case 'SET_SERIE_ID':
+        return {
+            ...state,
+            serieId: action.payload
+        };
     case 'SET_COMENTARIO':
         return {
             ...state,

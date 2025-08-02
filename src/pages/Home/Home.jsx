@@ -4,11 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, Card, H1, H3, Intent, Tooltip} from '@blueprintjs/core';
 
-import {Botao} from '../components/Botao.jsx';
-import {Estrelas} from '../components/Estrelas.jsx';
-import {getMinhasSeries} from '../state/selectors.js';
-import {resetMinhasSeries, seriesSalvas} from '../state/actions.js';
-import {funcaoScroll} from './Utils.js';
+import {Botao} from '../../components/Botao.jsx';
+import {Estrelas} from '../../components/Estrelas.jsx';
+import {scroll} from './utils.js';
+import {resetMinhasSeries, seriesSalvas} from "./actions.js";
+import {getMinhasSeries} from "./selectors.js";
 
 export function Home() {
     const navigate = useNavigate();
@@ -31,23 +31,15 @@ export function Home() {
         };
     }, []);
 
-    const handleCadastrarClick = () => {
-        navigate('/cadastrar');
-    };
-
-    const scroll = (direction) => {
-        funcaoScroll(scrollRef, direction, setPagina, pagina);
-    };
-
     return (
         <div className="bp5-dark">
             <H1>SEU CATÁLOGO</H1>
             <div style={{display: 'flex'}}>
-                <Button icon={'caret-left'} title={'Flecha-para-esquerda'} onClick={() => scroll('esquerda')}/>
+                <Button icon={'caret-left'} title={'Flecha-para-esquerda'} onClick={() => scroll(scrollRef, 'esquerda', setPagina, pagina)}/>
                 <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
                     {minhasSeries.map((serie, index) => (
                         <Card key={index}
-                            onClick={() => navigate('/atualizar')}
+                            onClick={() => navigate(`/atualizar/${serie._id}`)}
                             style={{cursor: 'pointer'}}
                         >
                             <img src={serie.capa} alt={serie.titulo} style={{width:'200px'}}/>
@@ -66,10 +58,10 @@ export function Home() {
                         </Card>
                     ))}
                 </div>
-                <Button icon={'caret-right'} title={'Flecha-para-direita'} onClick={() => scroll('direita')}/>
+                <Button icon={'caret-right'} title={'Flecha-para-direita'} onClick={() => scroll(scrollRef, 'direita', setPagina, pagina)}/>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <Botao texto='Cadastrar' title='Cadastrar' onClick={handleCadastrarClick} intent={Intent.DANGER} />
+                <Botao texto='Cadastrar' title='Cadastrar' onClick={() => navigate('/cadastrar')} intent={Intent.DANGER} />
             </div>
         </div>
     );

@@ -2,23 +2,12 @@ import {getNotaUsuario, getSerie} from './selectors.js';
 
 export function buscarSugestoes(query) {
     return async (dispatch) => {
-        const response = await fetch(`api/series/sugestoes/busca?q=${encodeURIComponent(query)}`);
+        const response = await fetch(`/api/series/sugestoes/busca?q=${encodeURIComponent(query)}`);
         if(!response.ok){
             return;
         }
         const sugestoes = await response.json();
         dispatch(setSugestoes(sugestoes));
-    };
-}
-
-export function seriesSalvas(query) {
-    return async (dispatch) => {
-        const response = await fetch(`http://localhost:3000/series?page=${query.page}&limit=5`);
-        if (!response.ok) {
-            return;
-        }
-        const minhasSeries = await response.json();
-        dispatch(setMinhasSeries(minhasSeries));
     };
 }
 
@@ -33,7 +22,7 @@ export function salvarSerie(navigate) {
         }
         serie.notaUsuario = notaUsuario || 3;
         try {
-            const result = await fetch('api/series', {
+            const result = await fetch('/api/series', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,15 +70,3 @@ export function setNotaUsuario(notaUsuario) {
     };
 }
 
-function setMinhasSeries(minhasSeries) {
-    return {
-        type: 'SET_MINHAS_SERIES',
-        payload: minhasSeries
-    };
-}
-
-export function resetMinhasSeries() {
-    return {
-        type: 'RESET_MINHAS_SERIES'
-    };
-}

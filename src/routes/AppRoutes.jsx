@@ -1,9 +1,7 @@
 import React from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import { Home } from '../pages/Home.jsx';
-import { AddSerie } from '../pages/AddSerie.jsx';
-import { EditSerie } from '../pages/EditSerie.jsx';
+import { EditSerie, Home, AddSerie } from '../pages';
 
 export function AppRoutes(){
     return (
@@ -11,7 +9,7 @@ export function AppRoutes(){
             <Routes>
                 <Route path='/' element={<Home/>} />
                 <Route path='/cadastrar' element={<AddSerie/>} />
-                <Route path='/atualizar' element={<EditSerie/>} />
+                <Route path='/atualizar/:id' element={<EditSerie/>} />
             </Routes>
         </BrowserRouter>
     );

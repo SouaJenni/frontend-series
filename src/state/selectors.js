@@ -14,6 +14,3 @@ export function getNotaUsuario(state) {
     return state.series.serie?.notaUsuario || 3;
 }
 
-export function getMinhasSeries(state) {
-    return state.series.series;
-}

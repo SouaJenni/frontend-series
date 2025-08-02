@@ -1,0 +1,1 @@
+export { EditSerie } from './EditSerie';
