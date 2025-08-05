@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchSerieById, setSerieId} from './actions.js';
+import {atualizarSerie, deletarSerie, fetchSerieById, setSerieId} from './actions.js';
 import {getSerie} from '../../state/selectors.js';
 import {Card, FormGroup, InputGroup, Intent, TextArea} from '@blueprintjs/core';
 import {Botao} from '../../components/Botao.jsx';
 import {BotaoEstrela} from '../../components/BotaoEstrela.jsx';
-import {setNotaUsuario} from '../../state/actions.js';
 
 export function EditSerie() {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const serie = useSelector(getSerie);
     const navigate = useNavigate();
+    const serie = useSelector(getSerie);
 
     const [titulo, setTitulo] = useState('');
     const [comentario, setComentario] = useState('');
@@ -57,10 +56,13 @@ export function EditSerie() {
                 <FormGroup label='Avaliação'>
                     <BotaoEstrela
                         defaultRating={notaUsuario}
-                        onChange={setNotaUsuario}
+                        value={notaUsuario}
+                        onChange={(value) => dispatch(setNotaUsuario(value))}
                     />
                 </FormGroup>
-                <Botao intent={Intent.DANGER} texto='Salvar' title='Salvar' onClick={()=> navigate('/')}/>
+
+                <Botao intent={Intent.NONE} texto='Atualizar' title='Atualizar' onClick={() => dispatch(atualizarSerie(navigate))}/>
+                <Botao intent={Intent.DANGER} texto='Excluir' title='Excluir' onClick={() => dispatch(deletarSerie(serie.id, navigate))}/>
             </Card>
         </div>
     );
