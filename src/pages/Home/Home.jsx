@@ -4,11 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, Card, H1, H3, Intent, Tooltip} from '@blueprintjs/core';
 
-import {Botao} from '../../components/Botao.jsx';
-import {Estrelas} from '../../components/Estrelas.jsx';
-import {scroll} from './utils.js';
 import {resetMinhasSeries, seriesSalvas} from './actions.js';
 import {getMinhasSeries} from './selectors.js';
+import {scroll} from './utils.js';
+import {Botao} from '../../components/Botao.jsx';
+import {Estrelas} from '../../components/Estrelas.jsx';
 
 export function Home() {
     const navigate = useNavigate();

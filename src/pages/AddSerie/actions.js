@@ -1,9 +1,10 @@
-import {getNotaUsuario, getSerie} from './selectors.js';
+import {getNotaUsuario} from './selectors.js';
+import {getSerie} from '../selectors.js';
 
 export function buscarSugestoes(query) {
     return async (dispatch) => {
         const response = await fetch(`/api/series/sugestoes/busca?q=${encodeURIComponent(query)}`);
-        if(!response.ok){
+        if (!response.ok) {
             return;
         }
         const sugestoes = await response.json();
@@ -29,7 +30,7 @@ export function salvarSerie(navigate) {
                 },
                 body: JSON.stringify(serie)
             });
-            if(!result.ok){
+            if (!result.ok) {
                 const error = await result.json();
                 alert(error.detail);
                 return;
@@ -46,27 +47,6 @@ export function setSugestoes(sugestoes) {
     return {
         type: 'BUSCAR_SUGESTOES',
         payload: sugestoes
-    };
-}
-
-export function setSerie(serie) {
-    return {
-        type: 'SET_SERIE',
-        payload: serie
-    };
-}
-
-export function setComentario(comentario) {
-    return {
-        type: 'SET_COMENTARIO',
-        payload: comentario
-    };
-}
-
-export function setNotaUsuario(notaUsuario) {
-    return {
-        type: 'SET_NOTA',
-        payload: notaUsuario
     };
 }
 

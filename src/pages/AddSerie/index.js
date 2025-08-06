@@ -1,0 +1,1 @@
+export {AddSerie} from './AddSerie';

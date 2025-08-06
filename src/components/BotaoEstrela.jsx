@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { Button, Icon } from '@blueprintjs/core';
 
 export function BotaoEstrela({ defaultRating = 0, onChange }) {

@@ -10,11 +10,12 @@ import {
 } from '@blueprintjs/core';
 import { Suggest} from '@blueprintjs/select';
 
-import { BotaoEstrela } from '../components/BotaoEstrela.jsx';
-import { Botao } from '../components/Botao.jsx';
-import {buscarSugestoes, salvarSerie, setComentario, setNotaUsuario, setSerie} from '../state/actions.js';
-import {setSugestoes} from '../state/actions.js';
-import {getComentario, getNotaUsuario, getSerie, getSugestoes} from '../state/selectors.js';
+import { BotaoEstrela } from '../../components/BotaoEstrela.jsx';
+import { Botao } from '../../components/Botao.jsx';
+import {setComentario, setNotaUsuario, setSerie} from '../actions.js';
+import {buscarSugestoes, salvarSerie, setSugestoes} from './actions.js';
+import {getComentario, getNotaUsuario, getSugestoes} from './selectors.js';
+import {getSerie} from '../selectors.js';
 
 const renderItem = (dispatch, item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;

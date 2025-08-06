@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Icon } from '@blueprintjs/core';
 
 export function Estrelas({ total = 5, active = 0 }) {

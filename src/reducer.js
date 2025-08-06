@@ -20,16 +20,20 @@ export const seriesReducer = (state = estadoInicial, action) => {
             ...state,
             serieId: action.payload
         };
-    case 'SET_COMENTARIO':
+    case 'SET_COMENTARIO': {
+        const novaSerie = {...state.serie, comentario: action.payload};
         return {
             ...state,
-            serie: {...state.serie, comentario: action.payload}
+            serie: novaSerie
         };
-    case 'SET_NOTA':
+    }
+    case 'SET_NOTA': {
+        const novaSerie = {...state.serie, notaUsuario: action.payload};
         return {
             ...state,
-            serie: {...state.serie, notaUsuario: action.payload}
+            serie: novaSerie
         };
+    }
     case 'SET_MINHAS_SERIES':
         return {
             ...state,

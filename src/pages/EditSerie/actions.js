@@ -1,6 +1,6 @@
 import {getSerieId} from './selectors.js';
-import {setSerie} from '../../state/actions.js';
-import {getNotaUsuario, getSerie} from '../../state/selectors.js';
+import {getSerie} from '../selectors.js';
+import {setSerie} from '../actions.js';
 
 export function fetchSerieById(){
     return async (dispatch, getState) => {
@@ -12,13 +12,12 @@ export function fetchSerieById(){
         }
         try {
             const response = await fetch(`/api/series/${serieId}`);
+            const result = await response.json();
             if (!response.ok) {
-                const error = await response.json();
-                alert(error.detail);
+                alert(result.detail);
                 return;
             }
-            const serie = await response.json();
-            dispatch(setSerie(serie));
+            dispatch(setSerie(result));
         }catch(err) {
             alert(`Erro ao buscar série/filme: ${err.message}`);
         }
@@ -35,14 +34,8 @@ export function setSerieId(id){
 export function atualizarSerie(id, navigate) {
     return async (dispatch, getState) => {
         const state = getState();
-        const serie = getSerie(getState());
+        const serie = getSerie(state);
         const serieId = getSerieId(state);
-        const notaUsuario = getNotaUsuario(getState());
-
-        const serieAtualizada = {
-            ...serie,
-            notaUsuario: notaUsuario || 3,
-        };
 
         try {
             const result = await fetch(`/api/series/${serieId}`, {
@@ -50,7 +43,7 @@ export function atualizarSerie(id, navigate) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(serieAtualizada),
+                body: JSON.stringify(serie),
             });
 
             if (!result.ok) {

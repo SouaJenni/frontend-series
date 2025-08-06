@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-
-import {seriesReducer} from './state/reducer.js';
+import {seriesReducer} from './reducer.js';
 
 export const store = configureStore({
     reducer: {
