@@ -44,6 +44,11 @@ export const seriesReducer = (state = estadoInicial, action) => {
             ...state,
             series: []
         };
+    case 'SET_TOTAL_SERIES':
+        return {
+            ...state,
+            totalSeries: action.payload
+        };
     default:
         return state;
     }

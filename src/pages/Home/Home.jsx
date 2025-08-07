@@ -5,8 +5,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button, Card, H1, H3, Intent, Tooltip} from '@blueprintjs/core';
 
 import {resetMinhasSeries, seriesSalvas} from './actions.js';
-import {getMinhasSeries} from './selectors.js';
-import {scroll} from './utils.js';
+import {getMinhasSeries, getTotalSeries} from './selectors.js';
+import {LIMITE_SERIES, scroll} from './utils.js';
 import {Botao} from '../../components/Botao.jsx';
 import {Estrelas} from '../../components/Estrelas.jsx';
 
@@ -14,8 +14,11 @@ export function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const minhasSeries = useSelector(getMinhasSeries);
+    const totalSeries = useSelector(getTotalSeries);
     const scrollRef = useRef(null);
     const [pagina, setPagina] = useState(null);
+    const [disabledEsquerda, setDisabledEsquerda] = useState(true);
+    const [disabledDireita, setDisabledDireita] = useState(false);
 
     useEffect(() => {
         if(pagina === null){
@@ -36,9 +39,10 @@ export function Home() {
             <H1>SEU CATÁLOGO</H1>
             <div style={{display: 'flex'}}>
                 <Button
+                    disabled={disabledEsquerda}
                     icon={'caret-left'}
                     title={'Flecha-para-esquerda'}
-                    onClick={() => scroll(scrollRef, 'esquerda', setPagina, pagina)}
+                    onClick={() => scroll(scrollRef, 'esquerda', setPagina, pagina, setDisabledEsquerda, setDisabledDireita, totalSeries)}
                 />
                 <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
                     {minhasSeries.map((serie, index) => (
@@ -63,9 +67,10 @@ export function Home() {
                     ))}
                 </div>
                 <Button
+                    disabled={disabledDireita}
                     icon={'caret-right'}
                     title={'Flecha-para-direita'} 
-                    onClick={() => scroll(scrollRef, 'direita', setPagina, pagina)}
+                    onClick={() => scroll(scrollRef, 'direita', setPagina, pagina, setDisabledEsquerda, setDisabledDireita, totalSeries)}
                 />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
