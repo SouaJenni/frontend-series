@@ -31,7 +31,7 @@ export function setSerieId(id){
     };
 }
 
-export function atualizarSerie(id, navigate) {
+export function atualizarSerie(navigate) {
     return async (dispatch, getState) => {
         const state = getState();
         const serie = getSerie(state);

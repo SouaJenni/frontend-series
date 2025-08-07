@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Card, FormGroup, InputGroup, Intent, TextArea} from '@blueprintjs/core';
+import {Card, FormGroup, InputGroup, Intent, TextArea, Tooltip} from '@blueprintjs/core';
 
 import {atualizarSerie, deletarSerie, fetchSerieById, setSerieId} from './actions.js';
 import {setComentario, setNotaUsuario} from '../actions.js';
@@ -27,13 +27,15 @@ export function EditSerie() {
     return (
         <div>
             <Card>
-                <div>
-                    <div style={{display: 'flex', gap: '2rem'}}>
+                <div style={{display: 'flex', gap: '2rem'}}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '10px' }}>
                         <Botao intent={Intent.NONE} icon={'arrow-left'} title='Voltar' onClick={() => navigate('/')}/>
                         <img src={serie?.capa} alt={serie?.titulo} style={{width:'200px'}}/>
-                        <Estrelas total={5} active={serie?.notaImdb}/>
+                        <Tooltip content={`Nota IMDb: ${serie?.notaImdb.toFixed(2)}`}>
+                            <Estrelas total={5} active={serie?.notaImdb}/>
+                        </Tooltip>
                     </div>
-                    <div>
+                    <div >
                         <FormGroup label='Título' labelFor='title-input'>
                             <InputGroup
                                 id="title-input"

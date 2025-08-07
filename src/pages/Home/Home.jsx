@@ -35,7 +35,11 @@ export function Home() {
         <div className="bp5-dark">
             <H1>SEU CATÁLOGO</H1>
             <div style={{display: 'flex'}}>
-                <Button icon={'caret-left'} title={'Flecha-para-esquerda'} onClick={() => scroll(scrollRef, 'esquerda', setPagina, pagina)}/>
+                <Button
+                    icon={'caret-left'}
+                    title={'Flecha-para-esquerda'}
+                    onClick={() => scroll(scrollRef, 'esquerda', setPagina, pagina)}
+                />
                 <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
                     {minhasSeries.map((serie, index) => (
                         <Card key={index}
@@ -58,10 +62,19 @@ export function Home() {
                         </Card>
                     ))}
                 </div>
-                <Button icon={'caret-right'} title={'Flecha-para-direita'} onClick={() => scroll(scrollRef, 'direita', setPagina, pagina)}/>
+                <Button
+                    icon={'caret-right'}
+                    title={'Flecha-para-direita'} 
+                    onClick={() => scroll(scrollRef, 'direita', setPagina, pagina)}
+                />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <Botao texto='Cadastrar' title='Cadastrar' onClick={() => navigate('/cadastrar')} intent={Intent.DANGER} />
+                <Botao
+                    texto='Cadastrar'
+                    title='Cadastrar'
+                    onClick={() => navigate('/cadastrar')}
+                    intent={Intent.DANGER}
+                />
             </div>
         </div>
     );
