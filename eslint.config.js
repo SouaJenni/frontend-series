@@ -47,6 +47,7 @@ export default defineConfig([
                     argsIgnorePattern: '^_',
                 },
             ],
+            'max-params': ['error', 3],
         },
     },
 ]);

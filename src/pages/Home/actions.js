@@ -1,4 +1,4 @@
-import {LIMITE_SERIES} from "./utils.js";
+import {LIMITE_SERIES} from './utils.js';
 
 export function seriesSalvas(query) {
     return async (dispatch) => {

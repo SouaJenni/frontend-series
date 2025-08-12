@@ -6,7 +6,7 @@ import {Button, Card, H1, H3, Intent, Tooltip} from '@blueprintjs/core';
 
 import {resetMinhasSeries, seriesSalvas} from './actions.js';
 import {getMinhasSeries, getTotalSeries} from './selectors.js';
-import {LIMITE_SERIES, scroll} from './utils.js';
+import { scroll} from './utils.js';
 import {Botao} from '../../components/Botao.jsx';
 import {Estrelas} from '../../components/Estrelas.jsx';
 
@@ -42,7 +42,14 @@ export function Home() {
                     disabled={disabledEsquerda}
                     icon={'caret-left'}
                     title={'Flecha-para-esquerda'}
-                    onClick={() => scroll(scrollRef, 'esquerda', setPagina, pagina, setDisabledEsquerda, setDisabledDireita, totalSeries)}
+                    onClick={() => scroll({
+                        scrollRef: scrollRef,
+                        direction: 'esquerda',
+                        setPagina: setPagina,
+                        pagina: pagina,
+                        setDisabledEsquerda: setDisabledEsquerda,
+                        setDisabledDireita: setDisabledDireita,
+                        totalSeries: totalSeries})}
                 />
                 <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
                     {minhasSeries.map((serie, index) => (
@@ -70,7 +77,14 @@ export function Home() {
                     disabled={disabledDireita}
                     icon={'caret-right'}
                     title={'Flecha-para-direita'} 
-                    onClick={() => scroll(scrollRef, 'direita', setPagina, pagina, setDisabledEsquerda, setDisabledDireita, totalSeries)}
+                    onClick={() => scroll({
+                        scrollRef: scrollRef,
+                        direction: 'direita',
+                        setPagina: setPagina,
+                        pagina: pagina,
+                        setDisabledEsquerda: setDisabledEsquerda,
+                        setDisabledDireita: setDisabledDireita,
+                        totalSeries: totalSeries})}
                 />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>

@@ -1,6 +1,6 @@
 export const LIMITE_SERIES = 5;
 
-export function scroll (scrollRef, direction, setPagina, pagina, setDisabledEsquerda, setDisabledDireita, totalSeries) {
+export function scroll ({scrollRef, direction, setPagina, pagina, setDisabledEsquerda, setDisabledDireita, totalSeries}) {
     if (!scrollRef.current) return;
     const scrollAmount = 200;
     if (direction === 'direita') {
