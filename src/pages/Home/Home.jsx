@@ -34,6 +34,14 @@ export function Home() {
         };
     }, []);
 
+    const scrollParams = {
+        scrollRef,
+        setPagina,
+        pagina,
+        setDisabledEsquerda,
+        setDisabledDireita,
+        totalSeries};
+
     return (
         <div className="bp5-dark">
             <H1>SEU CATÁLOGO</H1>
@@ -43,13 +51,9 @@ export function Home() {
                     icon={'caret-left'}
                     title={'Flecha-para-esquerda'}
                     onClick={() => scroll({
-                        scrollRef: scrollRef,
-                        direction: 'esquerda',
-                        setPagina: setPagina,
-                        pagina: pagina,
-                        setDisabledEsquerda: setDisabledEsquerda,
-                        setDisabledDireita: setDisabledDireita,
-                        totalSeries: totalSeries})}
+                        ...scrollParams,
+                        direction: 'esquerda'
+                    })}
                 />
                 <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
                     {minhasSeries.map((serie, index) => (
@@ -78,13 +82,9 @@ export function Home() {
                     icon={'caret-right'}
                     title={'Flecha-para-direita'} 
                     onClick={() => scroll({
-                        scrollRef: scrollRef,
-                        direction: 'direita',
-                        setPagina: setPagina,
-                        pagina: pagina,
-                        setDisabledEsquerda: setDisabledEsquerda,
-                        setDisabledDireita: setDisabledDireita,
-                        totalSeries: totalSeries})}
+                        ...scrollParams,
+                        direction: 'direita'
+                    })}
                 />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>

@@ -48,6 +48,7 @@ export default defineConfig([
                 },
             ],
             'max-params': ['error', 3],
+            'object-shorthand': ['error', 'always'],
         },
     },
 ]);
