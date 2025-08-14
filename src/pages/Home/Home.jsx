@@ -1,14 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {Button, Card, H1, H3, Intent, Tooltip} from '@blueprintjs/core';
+import { Button, Card, H1, H3, Intent, Tooltip } from '@blueprintjs/core';
 
-import {resetMinhasSeries, seriesSalvas} from './actions.js';
-import {getMinhasSeries, getTotalSeries} from './selectors.js';
-import { scroll} from './utils.js';
-import {Botao} from '../../components/Botao.jsx';
-import {Estrelas} from '../../components/Estrelas.jsx';
+import { resetMinhasSeries, seriesSalvas } from './actions.js';
+import { getMinhasSeries, getTotalSeries } from './selectors.js';
+import { scroll } from './utils.js';
+import { Botao } from '../../components/Botao.jsx';
+import { Estrelas } from '../../components/Estrelas.jsx';
+
+import './Home.css';
 
 export function Home() {
     const navigate = useNavigate();
@@ -21,11 +23,11 @@ export function Home() {
     const [disabledDireita, setDisabledDireita] = useState(false);
 
     useEffect(() => {
-        if(pagina === null){
+        if (pagina === null) {
             setPagina(1);
             return;
         }
-        dispatch(seriesSalvas({page: pagina}));
+        dispatch(seriesSalvas({ page: pagina }));
     }, [pagina]);
 
     useEffect(() => {
@@ -40,12 +42,13 @@ export function Home() {
         pagina,
         setDisabledEsquerda,
         setDisabledDireita,
-        totalSeries};
+        totalSeries
+    };
 
     return (
         <div className="bp5-dark">
             <H1>SEU CATÁLOGO</H1>
-            <div style={{display: 'flex'}}>
+            <div className="main-container">
                 <Button
                     disabled={disabledEsquerda}
                     icon={'caret-left'}
@@ -55,22 +58,19 @@ export function Home() {
                         direction: 'esquerda'
                     })}
                 />
-                <div ref={scrollRef} style={{display: 'flex', overflowX: 'hidden'}}>
+                <div ref={scrollRef} className="carrossel">
                     {minhasSeries.map((serie, index) => (
-                        <Card key={index}
+                        <Card
+                            key={index}
                             onClick={() => navigate(`/atualizar/${serie._id}`)}
-                            style={{cursor: 'pointer'}}
+                            className="card"
                         >
-                            <img src={serie.capa} alt={serie.titulo} style={{width:'200px'}}/>
-                            <Tooltip
-                                content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}
-                            >
-                                <Estrelas active={serie.notaImdb}/>
+                            <img src={serie.capa} alt={serie.titulo} />
+                            <Tooltip content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}>
+                                <Estrelas active={serie.notaImdb} />
                             </Tooltip>
-                            <Tooltip
-                                content={`Sua nota: ${serie.notaUsuario}`}
-                            >
-                                <Estrelas active={serie.notaUsuario}/>
+                            <Tooltip content={`Sua nota: ${serie.notaUsuario}`}>
+                                <Estrelas active={serie.notaUsuario} />
                             </Tooltip>
                             <H3>{serie.titulo}</H3>
                             <p>{serie.ano}</p>
@@ -80,14 +80,14 @@ export function Home() {
                 <Button
                     disabled={disabledDireita}
                     icon={'caret-right'}
-                    title={'Flecha-para-direita'} 
+                    title={'Flecha-para-direita'}
                     onClick={() => scroll({
                         ...scrollParams,
                         direction: 'direita'
                     })}
                 />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center'}}>
+            <div className="botao">
                 <Botao
                     texto='Cadastrar'
                     title='Cadastrar'
@@ -98,6 +98,3 @@ export function Home() {
         </div>
     );
 }
-
-
-

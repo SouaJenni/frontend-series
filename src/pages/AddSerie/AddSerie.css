@@ -1,0 +1,22 @@
+.bp5-dark {
+    background-color: #1c1c1c;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.bp5-dark .bp5-card {
+    background-color: #2a2a2a;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.sugestao-icone {
+    color: #f0f0f0;
+    margin-right: 8px;
+}
+
+.sugestao-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}

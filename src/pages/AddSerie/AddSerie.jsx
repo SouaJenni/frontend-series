@@ -16,6 +16,7 @@ import {setComentario, setNotaUsuario, setSerie} from '../actions.js';
 import {buscarSugestoes, salvarSerie, setSugestoes} from './actions.js';
 import {getComentario, getNotaUsuario, getSugestoes} from './selectors.js';
 import {getSerie} from '../selectors.js';
+import './AddSerie.css';
 
 const renderItem = (dispatch, item, { modifiers }) => {
     if (!modifiers.matchesPredicate) return null;

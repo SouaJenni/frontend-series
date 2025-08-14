@@ -1,0 +1,21 @@
+.main-container {
+    background-color: #252a31;
+    display: flex;
+    gap: 2rem;
+}
+
+.container-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.capa {
+    width: 200px;
+}
+
+.botoes {
+    display: flex;
+    gap: 1rem;
+}

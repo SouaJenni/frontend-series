@@ -1,0 +1,21 @@
+.main-container {
+    display: flex;
+}
+
+.carrossel {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.card img {
+    width: 200px;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+}

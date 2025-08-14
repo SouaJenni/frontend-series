@@ -10,6 +10,7 @@ import {getSerie} from '../selectors.js';
 import {Botao} from '../../components/Botao.jsx';
 import {BotaoEstrela} from '../../components/BotaoEstrela.jsx';
 import {Estrelas} from '../../components/Estrelas.jsx';
+import './EditSerie.css';
 
 export function EditSerie() {
     const { id } = useParams();
@@ -27,10 +28,14 @@ export function EditSerie() {
     return (
         <div>
             <Card>
-                <div style={{display: 'flex', gap: '2rem'}}>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '10px' }}>
+                <div className="main-container">
+                    <div className="container-info">
                         <Botao intent={Intent.NONE} icon={'arrow-left'} title='Voltar' onClick={() => navigate('/')}/>
-                        <img src={serie?.capa} alt={serie?.titulo} style={{width:'200px'}}/>
+                        <img 
+                            src={serie?.capa} 
+                            alt={serie?.titulo} 
+                            className="capa"
+                        />
                         <Tooltip content={`Nota IMDb: ${serie?.notaImdb.toFixed(2)}`}>
                             <Estrelas total={5} active={serie?.notaImdb}/>
                         </Tooltip>
@@ -63,7 +68,7 @@ export function EditSerie() {
                                 onChange={(event) => dispatch(setComentario(event.target.value))}
                             />
                         </FormGroup>
-                        <div style={{display: 'flex', gap: '1rem'}}>
+                        <div className="botoes">
                             <Botao intent={Intent.NONE} texto='Atualizar' title='Atualizar' onClick={() => dispatch(atualizarSerie(navigate))}/>
                             <Botao intent={Intent.DANGER} texto='Excluir' title='Excluir' onClick={() => dispatch(deletarSerie(serie.id, navigate))}/>
                         </div>
