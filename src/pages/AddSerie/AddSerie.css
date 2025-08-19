@@ -2,12 +2,38 @@
     background-color: #1c1c1c;
     min-height: 100vh;
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 80vh;
 }
 
-.bp5-dark .bp5-card {
-    background-color: #2a2a2a;
-    padding: 16px;
+.botao-voltar {
+    margin-bottom: 16px;
+}
+
+.botao-salvar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.botao-salvar .bp5-button-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.bp5-dark .card-add-serie {
+    border: 1px solid #555;
     border-radius: 8px;
+    padding: 20px;
+    background: #1e1e1e;
+    width: 500px;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .sugestao-icone {
@@ -20,3 +46,4 @@
     gap: 8px;
     align-items: center;
 }
+

@@ -48,7 +48,7 @@ export function Home() {
     return (
         <div className="bp5-dark">
             <H1>SEU CATÁLOGO</H1>
-            <div className="main-container">
+            <div className="main-container-home">
                 <Button
                     disabled={disabledEsquerda}
                     icon={'caret-left'}
@@ -63,7 +63,7 @@ export function Home() {
                         <Card
                             key={index}
                             onClick={() => navigate(`/atualizar/${serie._id}`)}
-                            className="card"
+                            className="card-home"
                         >
                             <img src={serie.capa} alt={serie.titulo} />
                             <Tooltip content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}>

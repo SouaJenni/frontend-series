@@ -40,7 +40,7 @@ export function EditSerie() {
                             <Estrelas total={5} active={serie?.notaImdb}/>
                         </Tooltip>
                     </div>
-                    <div >
+                    <div className="container-editaveis">
                         <FormGroup label='Título' labelFor='title-input'>
                             <InputGroup
                                 id="title-input"

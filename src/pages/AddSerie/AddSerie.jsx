@@ -60,8 +60,11 @@ export function AddSerie() {
 
     return (
         <div className="bp5-dark">
-            <Botao intent={Intent.NONE} icon={'arrow-left'} title='Voltar' onClick={() => navigate('/')} />
-            <Card>
+            <Card className="card-add-serie">
+                <div className="botao-voltar">
+                    <Botao intent={Intent.NONE} icon={'arrow-left'} title='Voltar' onClick={() => navigate('/')} />
+                </div>
+
                 <FormGroup label='Título' labelFor='title-input'>
                     <Suggest
                         // TODO: Check onItemSelect
@@ -94,8 +97,10 @@ export function AddSerie() {
                         onChange={(value) => dispatch(setNotaUsuario(value))}
                     />
                 </FormGroup>
-                
-                <Botao intent={Intent.DANGER} texto='Salvar' title='Salvar' onClick={() => dispatch(salvarSerie(navigate))} />
+
+                <div className="botao-salvar">
+                    <Botao intent={Intent.DANGER} texto='Salvar' title='Salvar' onClick={() => dispatch(salvarSerie(navigate))} />
+                </div>
             </Card>
         </div>
     );

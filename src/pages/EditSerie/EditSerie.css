@@ -2,6 +2,11 @@
     background-color: #252a31;
     display: flex;
     gap: 2rem;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    width: 600px;
+    height: 100%;
 }
 
 .container-info {
@@ -11,11 +16,40 @@
     gap: 10px;
 }
 
+.container-editaveis {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.container-editaveis #comment-textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+}
+
+.container-editaveis #resumo-textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+}
+
 .capa {
+    margin-top: 14px;
     width: 200px;
+}
+
+.botoes .bp5-button-text {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .botoes {
     display: flex;
     gap: 1rem;
+    justify-content: center;
 }
+
+

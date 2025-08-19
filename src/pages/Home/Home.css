@@ -1,5 +1,6 @@
-.main-container {
+.main-container-home {
     display: flex;
+    resize: none;
 }
 
 .carrossel {
@@ -7,15 +8,23 @@
     overflow-x: hidden;
 }
 
-.card {
+.card-home {
     cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
 }
 
-.card img {
+.card-home img {
     width: 200px;
 }
 
 .botao {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+.botao .bp5-button-text {
+    font-size: 20px;
+    font-weight: bold;
 }
