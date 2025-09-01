@@ -26,9 +26,9 @@ export function EditSerie() {
     }, []);
 
     return (
-        <div>
-            <Card>
-                <div className="main-container">
+        <div className="editSerie">
+            <Card className="card-edit-serie">
+                <div className="main-container-edit-serie">
                     <div className="container-info">
                         <Botao intent={Intent.NONE} icon={'arrow-left'} title='Voltar' onClick={() => navigate('/')}/>
                         <img 

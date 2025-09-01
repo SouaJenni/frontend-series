@@ -46,7 +46,7 @@ export function Home() {
     };
 
     return (
-        <div className="bp5-dark">
+        <div className="home">
             <H1>SEU CATÁLOGO</H1>
             <div className="main-container-home">
                 <Button
@@ -66,12 +66,14 @@ export function Home() {
                             className="card-home"
                         >
                             <img src={serie.capa} alt={serie.titulo} />
-                            <Tooltip content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}>
-                                <Estrelas active={serie.notaImdb} />
-                            </Tooltip>
-                            <Tooltip content={`Sua nota: ${serie.notaUsuario}`}>
-                                <Estrelas active={serie.notaUsuario} />
-                            </Tooltip>
+                            <div className="estrelas">
+                                <Tooltip content={`Nota IMDb: ${serie.notaImdb.toFixed(2)}`}>
+                                    <Estrelas active={serie.notaImdb} />
+                                </Tooltip>
+                                <Tooltip content={`Sua nota: ${serie.notaUsuario}`}>
+                                    <Estrelas active={serie.notaUsuario} />
+                                </Tooltip>
+                            </div>
                             <H3>{serie.titulo}</H3>
                             <p>{serie.ano}</p>
                         </Card>

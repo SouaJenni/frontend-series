@@ -59,7 +59,7 @@ export function AddSerie() {
     }, []);
 
     return (
-        <div className="bp5-dark">
+        <div className="addSerie">
             <Card className="card-add-serie">
                 <div className="botao-voltar">
                     <Botao intent={Intent.NONE} icon={'arrow-left'} title='Voltar' onClick={() => navigate('/')} />
